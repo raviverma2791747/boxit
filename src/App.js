@@ -2,7 +2,6 @@ import { Button, Container } from 'react-bootstrap';
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 import { GameContext } from './context/gameContext';
 import React from 'react';
-import Header from './components/header';
 import Home from './pages/home/home';
 import About from './pages/about/about';
 import Game from './pages/game/game';
