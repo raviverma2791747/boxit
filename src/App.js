@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Button, Container } from 'react-bootstrap';
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import { GameContext } from './context/gameContext';
+import React from 'react';
+import Header from './components/header';
+import Home from './pages/home/home';
+import About from './pages/about/about';
+import Game from './pages/game/game';
+
 
 function App() {
+
+  const [roomId, setRoomId] = React.useState(null);
+  const [playerName, setPlayerName] = React.useState(null);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Container className='d-flex flex-column min-vh-100' fluid>
+        <GameContext.Provider value={{ roomId, playerName, setRoomId, setPlayerName }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path='/game' element={<Game />} />
+          </Routes>
+        </GameContext.Provider>
+      </Container>
+    </Router>
   );
 }
 
