@@ -3,11 +3,19 @@ import './box.css';
 import Dot from './dot.js'
 import Edge from './edge.js';
 import { socket } from '../..//socket/socket';
+import Box from './box';
 
 const makeBoard = (N) => {
     let board = {
-        box: Array((N - 1) * (N - 1)).fill(null),
+        box: [],
         edge: []
+    }
+
+    let box_id = 0;
+    for (let i = 0; i < N - 1; i++) {
+        for (let j = 0; j < N - 1; j++) {
+            board.box.push({ x: i, y: j, id: box_id, active: false });
+        }
     }
 
     let edge_id = 0;
@@ -58,38 +66,69 @@ function Board({ size, side }) {
         setP(side / (size * 10))
     })
 
-
-    const updateEdge = (id, active) => {
+    const updateBox = (id, active) => {
         let newBoard = { ...board };
-        for (let i = 0; i < newBoard.edge.length; i++) {
-            if (newBoard.edge[i].id === id) {
-                newBoard.edge[i].active = true;
-                console.log(newBoard.edge[i]);
+        for (let i = 0; i < newBoard.box.length; i++) {
+            if (newBoard.box[i].id === id) {
+                newBoard.box[i].active = true;
             }
         }
         setBoard(newBoard);
     }
+
+
+    const updateEdge = (id, active) => {
+        let newBoard = { ...board };
+        let edge = null;
+        for (let i = 0; i < newBoard.edge.length; i++) {
+            if (newBoard.edge[i].id === id) {
+                newBoard.edge[i].active = true;
+                edge = newBoard.edge[i];
+            }
+        }
+        setBoard(newBoard);
+        checkBoxClosed(edge);
+    }
+
+    
+
+    const checkBoxClosed = (edge) => {
+        if (!edge) return;
+
+        if (edge.v1.x === edge.v2.x) {
+            let ev1 = board.edge.filter((e) => {
+
+            })
+        } else if (edge.v1.y === edge.v2.y) {
+
+        }
+    }
+
     const onClickEdge = (id) => {
         if (lock) return;
         updateEdge(id, true);
         socket.emit('chat', { id: id });
-        setLock(true);
+        //setLock(true);
     }
 
     React.useEffect(() => {
         socket.on('chat', (payload) => {
-            console.log(payload);
             updateEdge(payload.id);
-            setLock(false);
+            //setLock(false);
         })
     })
 
     return (
         <div style={{ position: 'relative', height: side, width: side, }}>
             {
+                board.box.map((box, key) => {
+                    return <Box key={key} x={box.x * B + P} y={box.y * B + P} height={B - P} width={B - P} activeColor='red' active={box.active} />
+                })
+            }
+            {
                 Array(size).fill(0).map((row, i) => {
                     return Array(size).fill(0).map((col, j) => {
-                        return <Dot x={i} y={j} height={5} width={5} boxSize={B} color='black' />
+                        return <Dot x={i} y={j} height={P} width={P} boxSize={B} color='black' />
                     })
                 })
             }
