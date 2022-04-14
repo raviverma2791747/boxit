@@ -2,7 +2,7 @@ import React from 'react'
 import './box.css';
 import Dot from './dot.js'
 import Edge from './edge.js';
-import { socket } from '../..//socket/socket';
+import { socket } from '../../socket/socket';
 import Box from './box';
 
 const makeBoard = (N) => {
@@ -66,13 +66,11 @@ function Board({ size, side }) {
         setP(side / (size * 10))
     })
 
-    const updateBox = (id, active) => {
+    const updateBox = (x, y, active) => {
         let newBoard = { ...board };
-        for (let i = 0; i < newBoard.box.length; i++) {
-            if (newBoard.box[i].id === id) {
-                newBoard.box[i].active = true;
-            }
-        }
+        newBoard.box.filter(box => {
+            box.x === x && box.y === y && (box.active = active)
+        })
         setBoard(newBoard);
     }
 
@@ -90,32 +88,78 @@ function Board({ size, side }) {
         checkBoxClosed(edge);
     }
 
-    
+    const probeDown = (x, y) => {
+        return board.edge.filter((e) => {
+            if (e.v1.x === x && e.v1.y === y && e.v2.x === x + 1 && e.v2.y === y) {
+                //console.log(e.active)
+                return e.active;
+            }
+            return false;
+        }).length === 0 ? false : true;
+    }
+
+    const probeRight = (x, y) => {
+        return board.edge.filter((e) => {
+            if (e.v1.x === x && e.v1.y === y && e.v2.x === x && e.v2.y === y + 1) {
+                // console.log(e.active)
+                return e.active;
+            }
+            return false;
+        }).length === 0 ? false : true;
+    }
+
+    const probe = (x, y) => {
+        console.log(probeDown(x, y) && probeDown(x, y + 1) && probeRight(x, y) && probeRight(x + 1, y))
+        return probeDown(x, y) && probeDown(x, y + 1) && probeRight(x, y) && probeRight(x + 1, y);
+    }
 
     const checkBoxClosed = (edge) => {
+
+        console.log(edge)
         if (!edge) return;
 
-        if (edge.v1.x === edge.v2.x) {
-            let ev1 = board.edge.filter((e) => {
 
-            })
+        if (edge.v1.x === 0 || edge.v1.y === 0) {
+            if (probe(edge.v1.x, edge.v1.y)) {
+                updateBox(edge.v1.x, edge.v1.y, true);
+            }
+        } else if (edge.v1.x === size - 1) {
+            if (probe(edge.v1.x - 1, edge.v1.y)) {
+                updateBox(edge.v1.x - 1, edge.v1.y, true);
+            }
+        } else if (edge.v1.y === size - 1) {
+            if (probe(edge.v1.x, edge.v1.y - 1)) {
+                updateBox(edge.v1.x, edge.v1.y - 1, true);
+            }
+        } else if (edge.v1.x === edge.v2.x) {
+            if (probe(edge.v1.x - 1, edge.v1.y)) {
+                updateBox(edge.v1.x - 1, edge.v1.y, true);
+            }
+            if (probe(edge.v1.x, edge.v1.y)) {
+                updateBox(edge.v1.x, edge.v1.y, true);
+            }
         } else if (edge.v1.y === edge.v2.y) {
-
+            if (probe(edge.v1.x, edge.v1.y - 1)) {
+                updateBox(edge.v1.x, edge.v1.y - 1, true);
+            }
+            if (probe(edge.v1.x, edge.v1.y)) {
+                updateBox(edge.v1.x, edge.v1.y, true);
+            }
         }
     }
 
     const onClickEdge = (id) => {
         if (lock) return;
         updateEdge(id, true);
-        socket.emit('chat', { id: id });
+        //socket.emit('chat', { id: id });
         //setLock(true);
     }
 
     React.useEffect(() => {
-        socket.on('chat', (payload) => {
-            updateEdge(payload.id);
-            //setLock(false);
-        })
+        /* socket.on('chat', (payload) => {
+             updateEdge(payload.id);
+             //setLock(false);
+         })*/
     })
 
     return (
