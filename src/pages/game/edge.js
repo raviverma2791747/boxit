@@ -7,7 +7,7 @@ const Edge = ({ key, x, y, height, width, active, color, activeColor, onClick })
 
     const style = {
         normal: {
-            cursor:'pointer',
+            cursor: 'pointer',
             position: 'absolute',
             backgroundColor: active ? activeColor : color,
             height: height,
@@ -21,15 +21,9 @@ const Edge = ({ key, x, y, height, width, active, color, activeColor, onClick })
     }
 
     return (<div key={key}
-        onClick={onClick}
-        onMouseEnter={() => {
-            setHover(true);
-        }}
-        onMouseLeave={() => {
-            setHover(false);
-        }}
-
-
+        onClick={active ? null : onClick}
+        onMouseOver={() => setHover(true)}
+        onMouseOut={() => setHover(false)}
         style={{ ...style.normal, ...(hover ? style.hover : null) }}>
     </div>)
 }

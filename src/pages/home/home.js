@@ -9,25 +9,34 @@ const Home = () => {
     const [validated, setValidated] = React.useState(false)
     const [playerName, setPlayerName] = React.useState('');
     const [roomId, setRoomId] = React.useState('');
+    const [roomLimit, setRoomLimit] = React.useState(2)
     const [action, setAction] = React.useState('');
+    const [message, setMessage] = React.useState('');
+    const [boardSize,setBoardSize] = React.useState(10);
     const gameContext = React.useContext(GameContext);
+
     let navigate = useNavigate();
 
-    React.useEffect(() => {
-        socket.on('joined', (payload) => {
-            if (payload.joined) {
-                gameContext.setPlayerName(playerName);
-                gameContext.setRoomId(roomId);
-                navigate('/game');
-            } else {
-                // setAction('not joined');
-            }
-        });
-    });
+    const onJoinedRoom = (payload) => {
+        if (payload.status) {
+            gameContext.setPlayerName(playerName);
+            gameContext.setRoomId(roomId);
+            gameContext.setPlayers(payload.players);
+            gameContext.setIsAdmin(payload.isAdmin);
+            gameContext.setBoardSize(parseInt(payload.boardSize));
+            gameContext.setColor(payload.color);
+            navigate('/game')
+        } else {
+            setMessage(payload.message)
+        }
+    }
 
+    const onCreateRoom = () => {
+        socket.emit('create', { playerId: gameContext.playerId, roomId: roomId, playerName: playerName, roomLimit: roomLimit, boardSize: boardSize }, onJoinedRoom);
+    }
 
     const onJoinRoom = () => {
-        socket.emit('join', { roomId: roomId, playerName: playerName });
+        socket.emit('join', { playerId: gameContext.playerId, roomId: roomId, playerName: playerName }, onJoinedRoom);
     }
 
     const onSubmit = (e) => {
@@ -36,9 +45,8 @@ const Home = () => {
 
         } else {
             if (action === 'create') {
-                console.log('create')
+                onCreateRoom()
             } else if (action === 'join') {
-                console.log('join')
                 onJoinRoom();
             }
         }
@@ -63,6 +71,33 @@ const Home = () => {
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="roomId" >
                                 <Form.Control value={roomId} onChange={(e) => setRoomId(e.target.value)} type="text" placeholder="Room ID" required />
+                                <Form.Text muted>
+                                    {message}
+                                </Form.Text>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="boardSize">
+                                <Form.Select value={boardSize} onChange={(e) =>  setBoardSize(e.target.value)} >
+                                <option key={2} value={2}>2</option>
+                                    <option key={4} value={4}>4</option>
+                                    <option key={6} value={6}>6</option>
+                                    <option key={8} value={8}>8</option>
+                                    <option key={10} value={10}>10</option>
+                                </Form.Select>
+                                <Form.Text muted>
+                                    Board Size
+                                </Form.Text>
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="roomLimit">
+                                <Form.Select value={roomLimit} onChange={(e) => setRoomLimit(e.target.value)} >
+                                    {
+                                        Array(9).fill(0).map((item, key) => {
+                                            return <option key={key} value={key + 2}>{key + 2}</option>
+                                        })
+                                    }
+                                </Form.Select>
+                                <Form.Text muted>
+                                    Total Players
+                                </Form.Text>
                             </Form.Group>
                             <Form.Group  >
                                 <Button type='submit' name='action' value='create' onClick={() => setAction('create')} className='mb-3 me-3'>
