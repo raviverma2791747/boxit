@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/boxit/static/css/main.0aa9b828.css",
-    "main.js": "/boxit/static/js/main.f651c6ba.js",
+    "main.js": "/boxit/static/js/main.8371518e.js",
     "index.html": "/boxit/index.html",
     "main.0aa9b828.css.map": "/boxit/static/css/main.0aa9b828.css.map",
-    "main.f651c6ba.js.map": "/boxit/static/js/main.f651c6ba.js.map"
+    "main.8371518e.js.map": "/boxit/static/js/main.8371518e.js.map"
   },
   "entrypoints": [
     "static/css/main.0aa9b828.css",
-    "static/js/main.f651c6ba.js"
+    "static/js/main.8371518e.js"
   ]
 }
