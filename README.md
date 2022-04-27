@@ -23,7 +23,7 @@
 <!-- Status -->
 
 <h4 align="center"> 
-	🚧 🚀This is a  SocketIO based realtime multiplayer game built using ExpressJS and ReactJS. This repository is the frontend of the game 🚧
+	🚧 🚀This is a  SocketIO based realtime multiplayer game built using ExpressJS and ReactJS. This repository is the frontend of the game. [Play Here](https://raviverma2791747.github.io/boxit) 🚧
 </h4> 
 
 <hr>
