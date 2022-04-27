@@ -53,9 +53,9 @@ The following tools were used in this project:
 - [Bootstrap](https://getbootstrap.com/)
 - [ExpressJS](https://expressjs.com/)
 - [SocketIO](https://socket.io/)
-- [HTML]
-- [CSS]
-- [Heroku for Deployment]
+- HTML
+- CSS
+- Heroku for Deployment
 
 ## :white_check_mark: Requirements ##
 
