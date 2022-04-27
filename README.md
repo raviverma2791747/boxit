@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+<div align="center" id="top"> 
+  <!--img src="1.png" alt="Code" /-->
+  &#xa0;
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+</div>
 
-## Available Scripts
+<h1 align="center">BoxIt Multiplayer Game</h1>
 
-In the project directory, you can run:
+<p align="center">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/raviverma2791747/boxit?color=56BEB8">
 
-### `npm start`
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/raviverma2791747/boxit?color=56BEB8">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/raviverma2791747/boxit?color=56BEB8">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  <img alt="Github issues" src="https://img.shields.io/github/issues/raviverma2791747/boxit?color=56BEB8" /> 
 
-### `npm test`
+  <img alt="Github forks" src="https://img.shields.io/github/forks/raviverma2791747/boxit?color=56BEB8" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  <img alt="Github stars" src="https://img.shields.io/github/stars/raviverma2791747/boxit?color=56BEB8" />
+</p>
 
-### `npm run build`
+<!-- Status -->
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h4 align="center"> 
+	🚧 🚀This is a  SocketIO based realtime multiplayer game built using ExpressJS and ReactJS. This repository is the frontend of the game 🚧
+</h4> 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<hr>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p align="center">
+  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
+  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
+  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
+  <a href="#man_office_worker-contributing">Contributing</a> &#xa0; | &#xa0;
+  <a href="https://github.com/raviverma2791747" target="_blank">Author</a>
+</p>
 
-### `npm run eject`
+<br>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## :dart: About ##
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+It is a simple multiplayer game. There consists of a board containing NxN dots on it. The players have to add edges between two dots. The player who completes a box is rewarded a point and a bonus move. The player will maximum boxes completed wins the game.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## :rocket: Technologies ##
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The following tools were used in this project:
 
-## Learn More
+- [ReactJS](https://reactjs.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [ExpressJS](https://expressjs.com/)
+- [SocketIO](https://socket.io/)
+- [HTML]
+- [CSS]
+- [Heroku for Deployment]
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## :white_check_mark: Requirements ##
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Before starting :checkered_flag:, you need to have [Git](https://git-scm.com), [Node](https://nodejs.org/en/), and the above Libraries installed.
 
-### Code Splitting
+# :man_office_worker: Contributing ##
+For major changes, please open an issue first to discuss what you would like to change.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Instructions to run
+1. open terminal in root directory
+2. run command npm start
 
-### Analyzing the Bundle Size
+```
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## :memo: License ##
 
-### Making a Progressive Web App
+This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+Made with :heart: by <a href="https://github.com/raviverma2791747" target="_blank">Ravi Verma</a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+&#xa0;
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<a href="#top">Back to top</a>
