@@ -43,7 +43,7 @@
 
 ## :dart: About ##
 
-It is a simple multiplayer game. There consists of a board containing NxN dots on it. The players have to add edges between two dots. The player who completes a box is rewarded a point and a bonus move. The player will maximum boxes completed wins the game.
+It is a simple multiplayer game. There consists of a board containing NxN dots on it. The players have to add edges between two dots. The player who completes a box is rewarded a point and a bonus move. The player wilth maximum boxes completed wins the game.
 
 ## :rocket: Technologies ##
 
