@@ -1,6 +1,6 @@
-import React from "react";
 import { io } from "socket.io-client";
 
-export const socket = io('http://localhost:5000');
+console.log(process.env.REACT_APP_SERVER_URL);
 
-//export const socket = io("https://boxit-ravi.herokuapp.com");
+export const socket = io(process.env.REACT_APP_SERVER_URL);
+
